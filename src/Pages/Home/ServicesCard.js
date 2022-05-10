@@ -7,8 +7,8 @@ const ServicesCard = () => {
         <div className='md:flex md:flex-row md:gap-10'>
 
             <div className="card md:w-96  bg-base-100 shadow-2xl mb-3">
-                <figure className="px-10 pt-10">
-                    <img src={fluoride} alt="Shoes" className="rounded-xl" />
+                <figure className="px-10 pt-10 ">
+                    <img src={fluoride} alt="Shoes" className="rounded-xl md:w-1/4" />
                 </figure>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">Fluoride Treatment</h2>
@@ -18,7 +18,7 @@ const ServicesCard = () => {
             </div>
             <div className="card md:w-96 bg-base-100 shadow-2xl mb-3">
                 <figure className="px-10 pt-10">
-                    <img src={cavity} alt="Shoes" className="rounded-xl" />
+                    <img src={cavity} alt="Shoes" className="rounded-xl md:w-1/4" />
                 </figure>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">Cavity Filling</h2>
@@ -26,9 +26,9 @@ const ServicesCard = () => {
 
                 </div>
             </div>
-            <div className="card md:w-96 bg-base-100 shadow-2xl">
+            <div className="card md:w-96 bg-base-100 shadow-2xl  mb-3">
                 <figure className="px-10 pt-10">
-                    <img src={whitening} alt="Shoes" className="rounded-xl" />
+                    <img src={whitening} alt="Shoes" className="rounded-xl md:w-1/4" />
                 </figure>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">Teeth Whitening</h2>

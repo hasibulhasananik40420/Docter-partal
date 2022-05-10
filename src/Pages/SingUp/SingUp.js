@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import google from '../../Assets/icons/1534129544.svg'
-const Login = () => {
+const SingUp = () => {
     return (
         <section className=" md:w-3/4">
         <div className="container px-6 py-12 h-full">
@@ -13,7 +12,7 @@ const Login = () => {
                 alt=""
               />
             </div>
-            <div className="md:w-8/12 lg:w-5/12 lg:ml-20">            
+            <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
               <form>
               <div className="mb-6">
                   <input
@@ -38,6 +37,14 @@ const Login = () => {
                     placeholder="Password"
                   />
                 </div>
+
+                <div className="mb-6">
+                  <input
+                    type="password"
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    placeholder="Confirm Password"
+                  />
+                </div>
       
                 <div className="flex justify-between items-center mb-6">
                 <div className="form-group form-check">
@@ -56,17 +63,10 @@ const Login = () => {
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
                 >
-                 Login
+                 SingIn
                 </button>
                  
-                <p className=" font-semibold mt-2 pt-1 mb-0  md:flex md:justify-end md:mr-4">
-                New to Doctors Portal?
-              <Link to="/singup"
-                className="ml-2 text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out"
-                >Create new account
-                </Link
-              >
-            </p>
+               
       
                 <div
                   className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5"
@@ -111,4 +111,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default SingUp;

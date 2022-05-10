@@ -4,7 +4,7 @@ const DantalCare = () => {
     return (
         <div className="hero min-h-screen md:px-32">
             <div className="hero-content flex-col lg:flex-row">
-                <img src={treatment} className="md:w-1/4 rounded-lg shadow-2xl" />
+                <img src={treatment} className="md:w-1/4 rounded-lg shadow-2xl" alt='' />
                 <div className='md:ml-32'>
                     <h1 className="md:text-5xl font-bold">Exceptional Dental</h1>
                     <h1 className="md:text-5xl font-bold"> Care, on Your Terms</h1>
