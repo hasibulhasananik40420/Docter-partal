@@ -10,9 +10,9 @@ const MakeAppionment = () => {
                  <img className='mt-[-150px]' src={docter} alt="" />
              </div>
 
-             <div className='flex-1'>
+              <div className='flex-1 px-5'>
                <h1 className='text-xl text-[#19D3AE] font-bold'>Appointment</h1>
-               <h1 className='text-3xl text-white font-medium mt-2'>Make an appointment Today</h1>
+               <h1 className='text-3xl text-white font-medium mt-2 py-3'>Make an appointment Today</h1>
                <p className='text-white mt-2'>
                It is a long established fact that a reader will be distracted by the readable content of 
                a page when looking at its layout. The point of using Lorem Ipsumis that it has a more-or-less normal distribution of letters,as opposed to using 'Content here, content here',
