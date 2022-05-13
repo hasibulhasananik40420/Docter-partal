@@ -1,7 +1,7 @@
 import React from 'react';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import google from '../../Assets/icons/1534129544.svg'
 import auth from '../../Firebase.init';
 import Spinner from '../Shared/Spinner';
@@ -10,30 +10,33 @@ const SingUp = () => {
     //google sing in
   const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
   const { register, formState: { errors }, handleSubmit } = useForm();
-  const [
-    createUserWithEmailAndPassword,
-    user,
-    loading,
-    error,
-  ] = useCreateUserWithEmailAndPassword(auth);  
-
-  const onSubmit = data => {
+  const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth);  
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const navigate = useNavigate()
+  
+  const onSubmit =async data => {
     console.log(data)
-    createUserWithEmailAndPassword(data.email , data.password)
+    await createUserWithEmailAndPassword(data.email , data.password)
+    await updateProfile({ displayName: data.name });
+    console.log('updated done');
+    navigate('/appointment')
   }
    
 
-  if(loading || googleLoading){
+  if(loading || googleLoading || updating){
        return <Spinner></Spinner>
   }
     
      let errorMessage
-    if(error || googleError){
-      errorMessage=<p className='text-red-500 font-serif'> {error?.message || googleError?.message}</p>
+    if(error || googleError ||updateError){
+      errorMessage=<p className='text-red-500 font-serif'> {error?.message || googleError?.message ||updateError.message}</p>
     }
+
+   
 
   if (googleUser || user) {
     console.log(googleUser,user);
+   
   }
 
 
