@@ -12,10 +12,15 @@ import Appoinment from './Pages/Appoinment/Appoinment';
 import RequireAuth from './Pages/Login/RequireAuth';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import DashBoard from './Pages/DashBoard/DashBoard';
+import MyAppointment from './Pages/DashBoard/MyAppointment';
+import MyReview from './Pages/DashBoard/MyReview';
+import MyHistory from './Pages/DashBoard/MyHistory';
+import AllUsers from './Pages/DashBoard/AllUsers';
 function App() {
   return (
     <div>
-
+   {/* 4mit */}
     <Navbar></Navbar>
 
     <Routes>
@@ -26,6 +31,16 @@ function App() {
         <Route path="/appointment" element={
           <RequireAuth><Appoinment /></RequireAuth>
         } />
+
+         <Route path="/dashboard" element={<RequireAuth><DashBoard></DashBoard></RequireAuth>}>
+
+         <Route index element={<MyAppointment></MyAppointment>}></Route>
+         <Route path='review' element={<MyReview></MyReview>}></Route>
+         <Route path='history' element={<MyHistory></MyHistory>}></Route>
+         <Route path='users' element={<AllUsers></AllUsers>}></Route>
+
+         </Route>
+       
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <ToastContainer />

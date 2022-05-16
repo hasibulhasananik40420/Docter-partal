@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import google from '../../Assets/icons/1534129544.svg'
 import auth from '../../Firebase.init';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
 import Spinner from '../Shared/Spinner';
+import useToken from '../../Hooks/useToken';
 const Login = () => {
   //google sing in
   const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
@@ -13,27 +14,32 @@ const Login = () => {
    const location = useLocation()
    const navigate = useNavigate()
    let from = location.state?.from?.pathname || "/"
-
+   const [token , setToken] = useToken(googleUser || user)
    
   const onSubmit = data => {
     console.log(data)
     signInWithEmailAndPassword(data.email , data.password)
   }
    
+  useEffect(()=>{
+    if (token) {
+      navigate(from, { replace: true });
+    }
+   } ,[token, from ,navigate ])
+
 
   if(loading || googleLoading){
        return <Spinner></Spinner>
   }
     
+
+
      let errorMessage
     if(error || googleError){
       errorMessage=<p className='text-red-500 font-serif'> {error?.message || googleError?.message}</p>
     }
 
-  if (googleUser || user) {
-    console.log(googleUser);
-    navigate(from, { replace: true });
-  }
+    
 
   return (
     <div className='flex justify-center items-center h-screen'>
@@ -95,7 +101,7 @@ const Login = () => {
           </form>
           <span>New to Docters portals? <Link className='text-primary font-medium' to="/singup">Create a account</Link></span>
           <div className="divider">OR</div>
-          <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-accent font-medium">Continue With Google</button>
+          <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-accent font-medium"><img className='w-[30px] mr-3' src={google} alt="" /> Continue With Google</button>
         </div>
       </div>
     </div>

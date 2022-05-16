@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import google from '../../Assets/icons/1534129544.svg'
 import auth from '../../Firebase.init';
+import useToken from '../../Hooks/useToken';
 import Spinner from '../Shared/Spinner';
 const SingUp = () => {
 
@@ -12,14 +13,17 @@ const SingUp = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth);  
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [token,setToken] = useToken(googleUser || user)
+
   const navigate = useNavigate()
+
   
   const onSubmit =async data => {
     console.log(data)
     await createUserWithEmailAndPassword(data.email , data.password)
     await updateProfile({ displayName: data.name });
-    console.log('updated done');
-    navigate('/appointment')
+    // console.log('updated done');
+  
   }
    
 
@@ -34,8 +38,9 @@ const SingUp = () => {
 
    
 
-  if (googleUser || user) {
-    console.log(googleUser,user);
+  if (token) {
+   
+    navigate('/appointment')
    
   }
 
@@ -124,7 +129,7 @@ const SingUp = () => {
           </form>
           <span>Already have an account? <Link className='text-primary font-medium' to="/login">Please Login</Link></span>
           <div className="divider">OR</div>
-          <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-accent font-medium">Continue With Google</button>
+          <button onClick={() => signInWithGoogle()} className="btn btn-outline btn-accent font-medium"><img className='w-[30px] mr-3' src={google} alt="" /> Continue With Google</button>
         </div>
       </div>
     </div>
